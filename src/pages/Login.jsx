@@ -1,19 +1,92 @@
+import { useState, useEffect } from "react";
+
+//import API
+import Api from "../api/Api";
+
+//import js cookie
+import Cookies from "js-cookie";
+
+//import react router dom
+import { useNavigate } from "react-router-dom";
+
+//import toast
+import toast from "react-hot-toast";
+
 export default function Login() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([]);
+  const [loading, setLoading] = useState(false); // Add loading state
+
+  const navigate = useNavigate();
+
+  document.title = "Login";
+
+  const login = async (e) => {
+    e.preventDefault();
+    setLoading(true); // Set loading to true when submitting the form
+
+    try {
+      const response = await Api.post("/api/login", {
+        email: email,
+        password: password,
+      });
+
+      Cookies.set("token", response.data.token);
+      Cookies.set("user", JSON.stringify(response.data.user));
+      Cookies.set("permissions", JSON.stringify(response.data.permissions));
+
+      toast.success("Login Successfully!", {
+        position: "top-right",
+        duration: 4000,
+      });
+
+      navigate("/dashboard");
+    } catch (error) {
+      if (error.response) {
+        // Server responded with error
+        setErrors(error.response.data);
+      } else {
+        // Something else went wrong
+        console.error("An error occurred:", error.message);
+      }
+    } finally {
+      setLoading(false); // Reset loading regardless of success or failure
+    }
+  };
+
+  // Check if user is already logged in
+  useEffect(() => {
+    if (Cookies.get("token")) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
   return (
     <>
-      <section className="w-full h-full bg-blue flex">
+      <section className="w-full h-full bg-blue-400 flex -mt-8 pb-[24rem] sm:pb-[5.5rem]">
+      {errors.length > 0 && (
+        <ul>
+          {errors.map((error, index) => (
+            <li key={index}>{error}</li>
+          ))}
+        </ul>
+      )}
         <div className="mx-auto grid border my-20 sm:my-24 sm:py-16 py-8 sm:px-12 rounded-lg gap-3 bg-slate-50 sm:w-[25rem] w-80">
           <h1 className="mx-auto capitalize text-2xl sm:text-3xl font-bold">
             sign in
           </h1>
           <h2 className="mx-auto text-lg sm:text-xl">dont have an account?</h2>
+          <form onSubmit={login}>
           <div className="mx-auto">
             <label htmlFor="email">
               <h1 className="mb-3 text-lg font-semibold">Email</h1>
               <input
                 type="email"
-                className="px-2 py-2 rounded-md sm:w-80 w-64"
+                value={email}
+                className="px-2 py-2 rounded-md sm:w-80 w-64 bg-slate-200"
                 placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
               />
             </label>
           </div>
@@ -21,22 +94,27 @@ export default function Login() {
             <label htmlFor="password">
               <h1 className="mb-3 font-semibold text-lg">Password</h1>
               <input
-                type="password"
-                className="py-2 px-2 rounded-md sm:w-80 w-64"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                className="py-2 px-2 rounded-md sm:w-80 w-64 bg-slate-200"
                 placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
               />
             </label>
           </div>
           <div className="mx-auto mt-5">
-            <button className="rounded-md bg-cyan-700 px-10 py-2 items-center">
+            <button
+            type="submit" disabled={loading}
+            className="rounded-md bg-cyan-700 px-10 py-2 items-center">
               <a
                 href="/dashboard"
                 className="text-lg text-slate-100 items-center font-semibold"
               >
                 sign in
               </a>
-            </button>
+            </button>{" "}
           </div>
+          </form>
         </div>
       </section>
     </>
