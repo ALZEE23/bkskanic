@@ -1,7 +1,7 @@
 import bg from "../assets/bkbk-removebg-preview 1.svg"
 import Sidebar from "../components/Sidebar"
 
-export default function Dashboard(){
+export default function Booking(){
     return (
         <>
         <div className="flex"> {/* Menggunakan flex container */}

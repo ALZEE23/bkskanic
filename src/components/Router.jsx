@@ -1,60 +1,75 @@
 //import react
-import { lazy } from "react";
+import { Suspense, lazy } from "react";
 
 //import react router dom
 import { Routes, Route } from "react-router-dom";
 
 //import loader component
-// const Loader = lazy(() => import("../components/Loader.jsx"));
-
-//import view Login
-const Login = lazy(() => import("../pages/Login.jsx"));
+const Loader = () => <div>Loading...</div>;
 
 //import private routes
 import PrivateRoutes from "./PrivateRoutes";
 
+//import view Login
+const Login = lazy(() => import("../pages/Login.jsx"));
 //import view dashboard
 const Dashboard = lazy(() => import("../pages/Dashboard.jsx"));
-
+const Booking = lazy(() => import("../pages/Booking.jsx"));
+const Riwayat = lazy(() => import("../pages/Riwayat.jsx"));
+const Chat = lazy(() => import("../pages/Chat.jsx"));
 // users
-
-
 import Home from "../pages/Home.jsx";
 
 export default function RoutesIndex() {
   return (
     <Routes>
       {/* route "/" */}
-      <Route
-        path="/"
-        element={
-          //   <Suspense fallback={<Loader />}>
-          <Home />
-          //   </Suspense>
-        }
-      />
+      <Route path="/" element={<Home />} />
 
       {/* route "/login" */}
-      <Route
-        path="/login"
-        element={
-          //   <Suspense fallback={<Loader />}>
-          <Login />
-          //   </Suspense>
-        }
-      />
+      <Route path="/login" element={<Login />} />
 
       {/* private route "/dashboard" */}
       <Route
         path="/dashboard"
         element={
-          //   <Suspense fallback={<Loader />}>
           <PrivateRoutes>
-            <Dashboard />
+            <Suspense fallback={<Loader />}>
+              <Dashboard />
+            </Suspense>
           </PrivateRoutes>
-          /* </Suspense> */
+        }
+      />
+      <Route
+        path="/booking"
+        element={
+          <PrivateRoutes>
+            <Suspense fallback={<Loader />}>
+              <Booking />
+            </Suspense>
+          </PrivateRoutes>
+        }
+      />
+      <Route
+        path="/riwayat"
+        element={
+          <PrivateRoutes>
+            <Suspense fallback={<Loader />}>
+              <Riwayat />
+            </Suspense>
+          </PrivateRoutes>
+        }
+      />
+      <Route
+        path="/chat"
+        element={
+          <PrivateRoutes>
+            <Suspense fallback={<Loader />}>
+              <Chat />
+            </Suspense>
+          </PrivateRoutes>
         }
       />
     </Routes>
-  );
+  );
 }

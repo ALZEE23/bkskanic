@@ -70,8 +70,8 @@ export default function Login() {
           {errors.map((error, index) => (
             <li key={index}>{error}</li>
           ))}
-        </ul>
-      )}
+       </ul>
+     )}
         <div className="mx-auto grid border my-20 sm:my-24 sm:py-16 py-8 sm:px-12 rounded-lg gap-3 bg-slate-50 sm:w-[25rem] w-80">
           <h1 className="mx-auto capitalize text-2xl sm:text-3xl font-bold">
             sign in
@@ -103,16 +103,10 @@ export default function Login() {
             </label>
           </div>
           <div className="mx-auto mt-5">
-            <button
-            type="submit" disabled={loading}
-            className="rounded-md bg-cyan-700 px-10 py-2 items-center">
-              <a
-                href="/dashboard"
-                className="text-lg text-slate-100 items-center font-semibold"
-              >
-                sign in
-              </a>
-            </button>{" "}
+          <button type="submit" disabled={loading} className="rounded-md bg-cyan-700 px-10 py-2 items-center">
+  <span className="text-lg text-slate-100 items-center font-semibold">Sign in</span>
+</button>
+            
           </div>
           </form>
         </div>
