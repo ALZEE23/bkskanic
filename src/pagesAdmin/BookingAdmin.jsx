@@ -1,7 +1,7 @@
-// import bg from "../assets/bkbk-removebg-preview 1.svg"
+import bg from "../assets/bkbk-removebg-preview 1.svg"
 import Sidebar from "../components/Sidebar"
 
-export default function Riwayat(){
+export default function BookingAdmin(){
     return (
         <>
         <div className="flex"> {/* Menggunakan flex container */}
@@ -29,7 +29,9 @@ export default function Riwayat(){
                         <div className="mx-auto mt-10 flex">
                             <h1 className="text-2xl font-semibold"><span className="font-bold">Selamat Datang</span> di bimbingan konseling. Tempat dimana perhatian dan pertumbuhan mental siswa menjadi prioritas utama.</h1>
                         </div>
-                        
+                        <div className="flex mx-auto">
+                        <img src={bg} alt="" className=" scale-50 sm:scale-75 mx-auto"/>
+                        </div>
                         </div>
                     </div>
                 </section>     

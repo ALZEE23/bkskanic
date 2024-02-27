@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 //import API
-import Api from "../api/Api";
+import {login} from "../api/Api";
 
 //import js cookie
 import Cookies from "js-cookie";
@@ -23,19 +23,16 @@ export default function Login() {
 
   document.title = "Login";
 
-  const login = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    setLoading(true); // Set loading to true when submitting the form
+    setLoading(true);
 
     try {
-      const response = await Api.post("/api/login", {
-        email: email,
-        password: password,
-      });
+      const response = await login(email, password);
 
-      Cookies.set("token", response.data.token);
-      Cookies.set("user", JSON.stringify(response.data.user));
-      Cookies.set("permissions", JSON.stringify(response.data.permissions));
+      Cookies.set("token", response.token);
+      Cookies.set("user", JSON.stringify(response.user));
+      Cookies.set("permissions", JSON.stringify(response.permissions));
 
       toast.success("Login Successfully!", {
         position: "top-right",
@@ -45,23 +42,21 @@ export default function Login() {
       navigate("/dashboard");
     } catch (error) {
       if (error.response) {
-        // Server responded with error
         setErrors(error.response.data);
       } else {
-        // Something else went wrong
         console.error("An error occurred:", error.message);
       }
     } finally {
-      setLoading(false); // Reset loading regardless of success or failure
+      setLoading(false);
     }
   };
 
-  // Check if user is already logged in
   useEffect(() => {
-    if (Cookies.get("token")) {
+    const token = Cookies.get("token");
+    if (token) {
       navigate("/dashboard");
     }
-  }, [navigate]);
+  }, []);
   return (
     <>
       <section className="w-full h-full bg-blue-400 flex -mt-8 pb-[24rem] sm:pb-[5.5rem]">
@@ -77,7 +72,7 @@ export default function Login() {
             sign in
           </h1>
           <h2 className="mx-auto text-lg sm:text-xl">dont have an account?</h2>
-          <form onSubmit={login}>
+          <form onSubmit={handleLogin} className="mx-auto">
           <div className="mx-auto">
             <label htmlFor="email">
               <h1 className="mb-3 text-lg font-semibold">Email</h1>

@@ -26,12 +26,9 @@ export default function Booking(){
                 <section className="flex-grow relative"> {/* Menggunakan flex-grow untuk memungkinkan konten untuk menempati ruang yang tersisa */}
                     <div className="flex px-3 sm:px-5">
                         <div>
-                        <div className="mx-auto mt-10 flex">
-                            <h1 className="text-2xl font-semibold"><span className="font-bold">Selamat Datang</span> di bimbingan konseling. Tempat dimana perhatian dan pertumbuhan mental siswa menjadi prioritas utama.</h1>
-                        </div>
-                        <div className="flex mx-auto">
-                        <img src={bg} alt="" className=" scale-50 sm:scale-75 mx-auto"/>
-                        </div>
+                            <div className="grid ">
+                                <div></div>
+                            </div>
                         </div>
                     </div>
                 </section>     
