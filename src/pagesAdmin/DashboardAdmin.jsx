@@ -1,5 +1,5 @@
 import bg from "../assets/bkbk-removebg-preview 1.svg"
-import Sidebar from "../components/Sidebar"
+import Sidebar from "../components/SidebarAdmin"
 
 export default function DashboardAdmin(){
     return (
@@ -36,7 +36,7 @@ export default function DashboardAdmin(){
                     </div>
                 </section>     
             </div>
-        </div>
+        </div>      
         </>
     )
 }

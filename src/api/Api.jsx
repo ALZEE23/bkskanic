@@ -55,7 +55,7 @@ Api.interceptors.response.use(
 );
 
 export const login = async (email,password) => {
-  const response = await Api.post("api/public/submission", {email,password}).catch(
+  const response = await Api.post("api/login", {email,password}).catch(
     (error) => {
       throw error;
     }
@@ -83,7 +83,7 @@ export const postBooking = async (bookingData) => {
     console.error("Error creating booking:", error.response.data);
     throw error; // Tangani kesalahan jika terjadi
   }
-};
+};  
 
-
+  
 export default Api;

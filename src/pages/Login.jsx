@@ -99,7 +99,7 @@ export default function Login() {
           </div>
           <div className="mx-auto mt-5">
           <button type="submit" disabled={loading} className="rounded-md bg-cyan-700 px-10 py-2 items-center">
-  <span className="text-lg text-slate-100 items-center font-semibold">Sign in</span>
+  <span className="text-lg text-slate-100 items-center font-semibold" >Sign in</span>
 </button>
             
           </div>

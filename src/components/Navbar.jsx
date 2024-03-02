@@ -21,16 +21,16 @@ const [isComplaintOpen, setIsComplaintOpen] = useState(false);
   return (
     <div className="bg-slate-400 py-5 -mt-8 fixed w-full">
       <Case>
-        <div className="flex items-center border px-3 sm:px-7">
+        <div className="flex items-center px-3 sm:px-7">
           <Link
             className="text-2xl flex font-semibold uppercase text-white sm:ml-16 absolute left-0 items-center"
             to="/"
           >
-            <img src={bk} className="scale-75 border -ml-2" />
+            <img src={bk} className="scale-75 -ml-2" />
             <h1 className="-ml-4">Bk Skanic</h1>
           </Link>
           <div className="hidden sm:flex space-x-6 items-center ml-auto sm:text-xl pr-10 text-white ">
-            <a href="/#home" className="hover:font-bold border">
+            <a href="/#home" className="hover:font-bold">
               Home
             </a>
             <a href="/#about" className="hover:font-bold">
@@ -66,7 +66,7 @@ const [isComplaintOpen, setIsComplaintOpen] = useState(false);
 
         {isComplaintOpen && (
           <div className="fixed">
-            <div className="mx-auto grid border my-20 sm:-mt-20 sm:ml-[50rem] sm:py-15 py-8 sm:px-12 rounded-lg gap-3 bg-slate-50 sm:w-[25rem] w-80 sm:scale-75">
+            <div className="mx-auto grid my-20 sm:-mt-20 sm:ml-[50rem] sm:py-15 py-8 sm:px-12 rounded-lg gap-3 bg-slate-50 sm:w-[25rem] w-80 sm:scale-75">
               <div>
                 <h1 className="mx-auto capitalize text-2xl sm:text-3xl font-bold">Complaint</h1>
               </div>

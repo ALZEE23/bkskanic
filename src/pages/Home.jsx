@@ -12,7 +12,7 @@ export default function Home() {
     <>
       <Navbar />
       <Case>
-        <section id="home" className="border mt-0 pt-5 sm:px-12">
+        <section id="home" className=" mt-0 pt-5 sm:px-12">
           <div className="grid sm:grid-cols-2">
             <div>
               <img src={home} className="mx-auto" />
@@ -27,7 +27,7 @@ export default function Home() {
                 pada pertumbuhan untuk membantu setiap siswa mencapai potensi
                 tertinggi mereka.
               </p>
-              <button className="border bg-slate-400 sm:w-32 sm:h-12 sm:mx-auto mx-28 mt-4 py-2 rounded-lg hover:bg-slate-900">
+              <button className=" bg-slate-400 sm:w-32 sm:h-12 sm:mx-auto mx-28 mt-4 py-2 rounded-lg hover:bg-slate-900">
                 <a href="" className="font-semibold text-white">
                   Daftar
                 </a>
@@ -35,7 +35,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section id="about" className="border mt-20 pt-5 sm:px-28   ">
+        <section id="about" className=" mt-20 pt-5 sm:px-28   ">
           <div className="">
             <div className="grid mt-5 gap-4">
               <h1 className="mx-auto text-2xl font-bold uppercase">About</h1>
@@ -116,7 +116,7 @@ export default function Home() {
               </div>
             </div>
             <div className="mx-4 sm:block grid gap-2 sm:gap-0 sm:mt-0 mt-4">
-              <div className="border block ">
+              <div className=" block ">
                 <h1 className="text-xl mb-2">Full Name</h1>
                 <label htmlFor="name">
                   <input
@@ -126,7 +126,7 @@ export default function Home() {
                   />
                 </label>
               </div>
-              <div className="border">
+              <div className="">
                 <h1 className="text-xl mb-2">Email</h1>
                 <label htmlFor="email">
                   <input
@@ -135,8 +135,8 @@ export default function Home() {
                     placeholder="Email"
                   />
                 </label>
-              </div>
-              <div className="border">
+              </div>  
+              <div className="">
                 <h1 className="text-xl mb-2">Message</h1>
                 <label htmlFor="message">
                   <input

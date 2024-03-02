@@ -12,7 +12,7 @@ function Sidebar() {
   };
 
   return (
-    <div className={`bg-gray-800 text-white -mt-10 h-screen ${collapsed ? 'w-16' : 'w-72'} transition-all duration-300 pt-2`}>
+    <div className={`bg-gray-400 text-white -mt-10 h-screen ${collapsed ? 'w-16 sm:block hidden' : 'w-72 sm:block hidden'} transition-all duration-300 pt-2`}>
       {/* Sidebar Content */}
       <div className='block'>
         <div className='flex items-center'>

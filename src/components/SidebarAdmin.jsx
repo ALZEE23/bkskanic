@@ -16,56 +16,36 @@ function SidebarAdmin() {
       {/* Sidebar Content */}
       <div className='block'>
         <div className='flex items-center'>
-          <img src={logo} className={collapsed ? 'hidden' : 'ml-1'} />
+          <img src={logo} className={collapsed ? 'hidden' : 'ml-1'} alt="Logo" />
           <button onClick={toggleSidebar} className="text-white p-3 focus:outline-none flex scale-110">
             {collapsed ? <MenuIcon className="h-6 w-6 ml-0 transition-transform duration-700" /> : <XIcon className="h-6 w-6 ml-28 transition-transform duration-700" />}
             {!collapsed && <span className="absolute left-5 transition-all duration-700">BK SKANIC</span>}
           </button>
         </div>
-        {collapsed ? <div className='mt-32'>
-          {!collapsed && <img src={icon} className='scale-75' />}
-          <NavLink to="/admin" className="text-white p-3 focus:outline-none flex">
-            <HomeIcon className="h-6 w-6" />
-            {!collapsed && <span className="left-12 absolute">Beranda</span>}
-          </NavLink>
-          <NavLink to="/admin/booking" className="text-white p-3 focus:outline-none flex">
-            <CalendarIcon className="h-6 w-6" />
-            {!collapsed && <span className="left-12 absolute">Booking Temu Janji</span>}
-          </NavLink>
-          <NavLink to="/admin/riwayat" className="text-white p-3 focus:outline-none flex">
-            <ClockIcon className="h-6 w-6" />
-            {!collapsed && <span className="left-12 absolute">Riwayat Pertemuan</span>}
-          </NavLink>
-          <NavLink to="/admin/chat" className="text-white p-3 focus:outline-none flex">
-            <MailIcon className="h-6 w-6" />
-            {!collapsed && <span className="absolute left-12">Chat</span>}
-          </NavLink>
-          <button>
-            Logout
-          </button>
-        </div> : <div className='mt-0'>
-          {!collapsed && <img src={icon} className='scale-75' />}
-          <NavLink to="/admin" className="text-white p-3 focus:outline-none flex">
-            <HomeIcon className="h-6 w-6" />
-            {!collapsed && <span className="left-12 absolute">Beranda</span>}
-          </NavLink>
-          <NavLink to="/admin/booking" className="text-white p-3 focus:outline-none flex">
-            <CalendarIcon className="h-6 w-6" />
-            {!collapsed && <span className="left-12 absolute">Booking Temu Janji</span>}
-          </NavLink>
-          <NavLink to="/admin/riwayat" className="text-white p-3 focus:outline-none flex">
-            <ClockIcon className="h-6 w-6" />
-            {!collapsed && <span className="left-12 absolute">Riwayat Pertemuan</span>}
-          </NavLink>
-          <NavLink to="/admin/chat" className="text-white p-3 focus:outline-none flex">
-            <MailIcon className="h-6 w-6" />
-            {!collapsed && <span className="absolute left-12">Chat</span>}
-          </NavLink>
-          <button>
-            Logout
-          </button>
-        </div>}
-        
+        {!collapsed && (
+          <div className='mt-32'>
+            <img src={icon} className='scale-75' alt="Icon" />
+            <NavLink to="/admin" className="text-white p-3 focus:outline-none flex">
+              <HomeIcon className="h-6 w-6" />
+              <span className="left-12 absolute">Beranda</span>
+            </NavLink>
+            <NavLink to="/admin/booking" className="text-white p-3 focus:outline-none flex">
+              <CalendarIcon className="h-6 w-6" />
+              <span className="left-12 absolute">Booking Temu Janji</span>
+            </NavLink>
+            <NavLink to="/admin/riwayat" className="text-white p-3 focus:outline-none flex">
+              <ClockIcon className="h-6 w-6" />
+              <span className="left-12 absolute">Riwayat Pertemuan</span>
+            </NavLink>
+            <NavLink to="/admin/chat" className="text-white p-3 focus:outline-none flex">
+              <MailIcon className="h-6 w-6" />
+              <span className="absolute left-12">Chat</span>
+            </NavLink>
+            <button>
+              Logout
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
