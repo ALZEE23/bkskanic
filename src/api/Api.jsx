@@ -72,6 +72,10 @@ export const fetchSubmissions = async () => {
   const response = await Api.get("/api/admin/submissions");
   return response.data.data.data;
 }
+export const fetchBookings = async () => {
+  const response = await Api.get("/api/admin/bookings");
+  return response.data.data.data;
+}
 
 export const postBooking = async (bookingData) => {
   try {
@@ -85,5 +89,20 @@ export const postBooking = async (bookingData) => {
   }
 };  
 
-  
+export const fetchMessages = async () => {
+  const response = await Api.get("/api/chats");
+  return response.data.data.data;
+}
+
+export const postMessages = async (mesageData) => {
+  try{
+  const response = await Api.post("/api/public/chats", mesageData);
+  console.log("Message created:", response.data);
+  return response.data;} catch (error){
+    console.error("Error Creating Message:", error.response.data);
+    throw error;
+  }
+
+}
+ 
 export default Api;

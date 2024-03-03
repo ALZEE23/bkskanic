@@ -3,12 +3,30 @@ import { CalendarIcon, ClockIcon, HomeIcon, LogoutIcon, MailIcon, MenuIcon, XIco
 import { NavLink } from 'react-router-dom'; // Import NavLink from react-router-dom
 import logo from "../assets/WhatsApp_Image_2024-01-11_at_12.08 1.svg";
 import icon from "../assets/Page-1.svg";
+import Api from '../api/Api';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
 
   const toggleSidebar = () => {
     setCollapsed(!collapsed);
+  };
+
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      await Api.post("/api/logout");
+      Cookies.remove("user");
+      Cookies.remove("token");
+      Cookies.remove("permissions");
+      console.log("Logout Berhasil!");
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout error:", error);
+      // Handle error or show an error toast
+    }
   };
 
   return (
@@ -64,9 +82,9 @@ function Sidebar() {
             <MailIcon className="h-6 w-6" />
             {!collapsed && <span className="absolute left-12">Chat</span>}
           </NavLink>
-          <NavLink to="/chat" className="text-white p-3 focus:outline-none flex">
+          <NavLink className="text-white p-3 focus:outline-none flex">
             <LogoutIcon className="h-6 w-6" />
-            <button className='flex'>
+            <button className='flex' onClick={handleLogout}>
             {!collapsed && <span className="absolute left-12">Logout</span>}
             </button>
           </NavLink>

@@ -16,6 +16,7 @@ export default function Booking(){
     const [bookingEnd,setBookingEnd] = useState("")
     const [idUser,setIdUser] = useState("")
     const [option,setOption] = useState("")
+    const [status,setStatus] = useState("1")
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -32,6 +33,7 @@ export default function Booking(){
             formData.append("email",email);
             formData.append("no_telepon",noTelepon);
             formData.append("problem",problem);
+            formData.append("status",status);
             formData.append("option",option);
             formData.append("consultation",consultation);
             formData.append("booking_date",bookingdate);
@@ -87,6 +89,7 @@ export default function Booking(){
                                         <label htmlFor="" className="">Name</label>
                                         <input type="text" onChange={(e) => setName(e.target.value)}/>
                                         </div>
+                                        <input type="hidden" onChange={(e) => setStatus(e.target.value)}/>
                                         <div className="flex justify-between">
                                         <label htmlFor="">Email</label>
                                         <input type="text" onChange={(e) => setEmail(e.target.value)}/>

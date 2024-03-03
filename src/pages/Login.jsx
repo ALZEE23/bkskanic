@@ -39,6 +39,8 @@ export default function Login() {
         duration: 4000,
       });
 
+      localStorage.setItem("userId",response.user.id);
+
       navigate("/dashboard");
     } catch (error) {
       if (error.response) {
