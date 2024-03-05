@@ -1,7 +1,21 @@
 import bg from "../assets/bkbk-removebg-preview 1.svg"
 import Sidebar from "../components/Sidebar"
-
+import { fetchSubmissions } from "../api/Api"
+import { useEffect, useState } from "react";
 export default function SubmissionAdmin(){
+    const [submisions,setSubmissions] = useState('');
+    useEffect(() => {
+        const fetchSubmissionsData = async () => {
+          try {
+            const submisionsData = await fetchSubmissions();
+            setSubmissions(submisionsData);
+          } catch (error) {
+            console.error('Error fetching bookings:', error);
+          }
+        };
+    
+        fetchSubmissionsData();
+      }, []);
     return (
         <>
         <div className="flex"> {/* Menggunakan flex container */}

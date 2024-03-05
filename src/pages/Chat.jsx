@@ -34,8 +34,8 @@ const Chat = () => {
     };
   }, []);
 
-  const [pengirim, setPengirim] = useState("15");
-  const [penerima, setPenerima] = useState("12");
+  const [pengirim, setPengirim] = useState("");
+  const [penerima, setPenerima] = useState("15");
   const [chat, setChat] = useState("");
 
   const sendMessage = async (event) => {
@@ -61,6 +61,14 @@ const Chat = () => {
     }
   };
 
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    console.log("user id",userId);
+    if (userId){
+      setPengirim(userId);
+    }
+  },[]);
+
   return (
     <>
       <div className="flex h-screen relative">
@@ -73,22 +81,14 @@ const Chat = () => {
               </div>
             </div>
             <div className="flex flex-col px-3 sm:px-5 py-5 space-y-2 mb-28">
-              {conversation.map((message, index) => (
-                <div
-                  key={index}
-                  className={`${
-                    message.pengirim ? "self-end" : "self-start"
-                  }`}
-                >
-                  <div
-                    className={`${
-                      message.penerima ? "bg-blue-500 text-white" : "bg-gray-200"
-                    } p-3 rounded-lg inline-block`}
-                  > 
-                    {message.chat}
-                  </div>
-                </div>
-              ))}
+            {conversation.map((message, index) => (
+  <div key={index} className={`${message.pengirim === userId ? "self-end" : "self-start"}`}>
+    <div className={`${message.penerima === userId ? "bg-blue-500 text-white" : "bg-gray-200"} p-3 rounded-lg inline-block`}>
+      {message.chat}
+    </div>
+  </div>
+))}
+
             </div>
           </section>
 

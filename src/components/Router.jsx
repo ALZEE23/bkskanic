@@ -60,7 +60,7 @@ export default function RoutesIndex() {
         element={
           <PrivateRoutes>
             <Suspense fallback={<Loader />}>
-              <Riwayat />
+              <Riwayat />x``
             </Suspense>
           </PrivateRoutes>
         }

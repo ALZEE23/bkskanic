@@ -32,16 +32,22 @@ export default function Login() {
 
       Cookies.set("token", response.token);
       Cookies.set("user", JSON.stringify(response.user));
-      Cookies.set("permissions", JSON.stringify(response.permissions));
+      Cookies.set("permissions", JSON.stringify(response.permission));
 
       toast.success("Login Successfully!", {
         position: "top-right",
         duration: 4000,
       });
-
+      localStorage.setItem("permission", response.permission);
+      console.log(response.permission);
       localStorage.setItem("userId",response.user.id);
+      console.log(response.user.id);
 
-      navigate("/dashboard");
+      if(response.permission["users.index"]){
+        navigate("/admin");  
+      } else{
+        navigate("/dashboard");
+      }
     } catch (error) {
       if (error.response) {
         setErrors(error.response.data);
@@ -53,12 +59,12 @@ export default function Login() {
     }
   };
 
-  useEffect(() => {
-    const token = Cookies.get("token");
-    if (token) {
-      navigate("/dashboard");
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = Cookies.get("token");
+  //   if (token) {
+  //     navigate("/dashboard");
+  //   }
+  // }, []);
   return (
     <>
       <section className="w-full h-full bg-blue-400 flex -mt-8 pb-[24rem] sm:pb-[5.5rem]">

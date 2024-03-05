@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import bg from "../assets/bkbk-removebg-preview 1.svg"
 import Sidebar from "../components/Sidebar"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Api from "../api/Api";
 
 export default function Booking(){
@@ -49,6 +49,13 @@ export default function Booking(){
             console.log("Error", error.response);
         }
 };
+useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    console.log("User Id:", userId);
+    if(userId){
+        setIdUser(userId);
+    }
+},[]);
     return (
         <>
         <div className="flex"> {/* Menggunakan flex container */}
@@ -82,8 +89,7 @@ export default function Booking(){
                                 <div className="">
                                     <form onSubmit={handleFormSubmit} className="grid border w-full gap-y-1 mt-12 bg-slate-300  px-6 py-6">
                                         <div className="flex justify-between space-x-20">
-                                        <label htmlFor="" className="">Id User</label>
-                                        <input type="text" onChange={(e) => setIdUser(e.target.value)}/>
+                                        <input type="hidden" defaultValue={idUser} onChange={(e) => setIdUser(e.target.value)}/>
                                         </div>  
                                         <div className="flex justify-between">
                                         <label htmlFor="" className="">Name</label>
